@@ -78,31 +78,25 @@ public class PluginPAPIExpansion extends PlaceholderExpansion {
 
         //Checking if the plugin is enabled.
         if (identifier.toLowerCase().startsWith("isenabled_")) {
-            for (Plugin pl : Bukkit.getPluginManager().getPlugins()) {
-                if (pl == null) continue; //we do not want null plugins.
-                if (!pl.getName().equalsIgnoreCase(identifier.toLowerCase().replace("isenabled_", ""))) continue; //check if the name is correct
-                if (pl.isEnabled()) return "true"; //return true if enabled
-                return "false"; //return default false because plugin is disabled.
-            }
+            Plugin pl = Bukkit.getPluginManager().getPlugin(identifier.toLowerCase().replace("isenabled_", ""));
+            if (pl == null) return "false";
+            if (pl.isEnabled()) return "true";
+            return "false";
         }
 
         //Check if plugin is disabled.
         if (identifier.toLowerCase().startsWith("isdisabled_")) {
-            for (Plugin pl : Bukkit.getPluginManager().getPlugins()){
-                if (pl == null) continue; //we do not want null plugins.
-                if (!pl.getName().equalsIgnoreCase(identifier.toLowerCase().replace("isdisabled_", ""))) continue; //check if the name is correct
-                if (pl.isEnabled()) return "false"; // plugin is enabled so return false.
-                return "true"; //return true because plugin is disabled,
-            }
+            Plugin pl = Bukkit.getPluginManager().getPlugin(identifier.toLowerCase().replace("isdisabled_", ""));
+            if (pl == null) return "false";
+            if (pl.isEnabled()) return "false";
+            return "true";
         }
 
         //Check if a plugin exists in the plugins folder.
         if (identifier.toLowerCase().startsWith("exists_")) {
-            for (Plugin pl : Bukkit.getPluginManager().getPlugins()){
-                if (pl == null) continue; //we do not want null plugins.
-                if (pl.getName().equalsIgnoreCase(identifier.toLowerCase().replace("exists_", ""))) return "true"; //return if name is correct because the plugin then exists.
-            }
-            return "false"; //no plugin found matching the name so it does not exist.
+            Plugin pl = Bukkit.getPluginManager().getPlugin(identifier.toLowerCase().replace("isenabled_", ""));
+            if (pl == null) return "false";
+            return "true";
         }
 
         return null;
