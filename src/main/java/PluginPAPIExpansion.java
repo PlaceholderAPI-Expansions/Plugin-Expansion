@@ -94,7 +94,7 @@ public class PluginPAPIExpansion extends PlaceholderExpansion {
 
         //Check if a plugin exists in the plugins folder.
         if (identifier.toLowerCase().startsWith("exists_")) {
-            Plugin pl = Bukkit.getPluginManager().getPlugin(identifier.toLowerCase().replace("isenabled_", ""));
+            Plugin pl = Bukkit.getPluginManager().getPlugin(identifier.toLowerCase().replace("exists_", ""));
             if (pl == null) return "false";
             return "true";
         }
