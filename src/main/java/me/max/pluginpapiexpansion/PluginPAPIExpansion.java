@@ -20,6 +20,8 @@
  *
  */
 
+package me.max.pluginpapiexpansion;
+
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
